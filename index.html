@@ -6,6 +6,79 @@
     <title>Tiffney Chen - Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        
+            @keyframes fadeUp {
+        0% {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .hero-pic {
+        width: 350px;
+        height: 350px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid #ccc;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        
+        opacity: 0;
+        animation: fadeUp 1.2s ease-out forwards;
+        animation-delay: 1.4s; /* Slight delay to sync with loader/typing */
+    }
+
+        #loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--bg-light);
+        color: var(--text-light);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease, visibility 0.5s;
+    }
+    .dark-mode #loader {
+        background-color: var(--bg-dark);
+        color: var(--text-dark);
+    }
+
+    .spinner {
+        border: 6px solid #ccc;
+        border-top: 6px solid #555;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        margin-bottom: 1rem;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+        .cursor {
+            display: inline-block;
+            animation: blink 0.8s infinite;
+            color: var(--text-light);
+        }
+        .dark-mode .cursor {
+            color: var(--text-dark);
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
         .banner {
             
             background-color: rgba(238, 233, 211, 0.6); /* or pick a color like #222 or a gradient */
@@ -157,6 +230,41 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
+        .project-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInCards 0.8s ease forwards;
+        }
+
+        .project-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        .project-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        .project-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        .project-card:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+        .project-card:nth-child(5) {
+            animation-delay: 1s;
+        }
+
+        @keyframes fadeInCards {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .project-card:hover {
+        transform: scale(1.03);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+
         .project-card img {
             width: 100%;
             height: 200px;
@@ -214,6 +322,10 @@
     </style>
 </head>
 <body>
+    <div id="loader">
+        <div class="spinner"></div>
+        <p>Loading portfolio...</p>
+    </div>
     <nav>
         <div class="nav-content">
             <div class="logo">tiffney.</div>
@@ -232,10 +344,11 @@
                 <p>hi there 👋, i'm</p>
                 <h1>Tiffney Chen</h1>
                 <p>18, She/Her</p>
-                <p>Passionate about cybersecurity and building secure applications.</p>
+                <p><span id="typed-text"></span><span class="cursor">|</span></p>
+
                 <div class="buttons">
                   <!-- <a href="/resume.pdf" class="btn btn-primary">Resume</a> -->
-                  <a href="mailto:chentiffney@gmail.com" class="btn btn-secondary">Email</a>
+                  <a href="mailto:chentiffney@gmail.com" target="_mailto:chentiffney@gmail.com" class="btn btn-secondary">Email</a>
                   <a href="https://github.com/tiffneychen" target="_blank" class="btn btn-secondary">GitHub</a>
                   <a href="https://www.linkedin.com/in/tiffney-chen/" target="_blank" class="btn btn-secondary">LinkedIn</a>
                 </div>
@@ -352,6 +465,34 @@
           
     </section>
     <script>
+        // Loader Fade
+        window.addEventListener("load", () => {
+            const loader = document.getElementById("loader");
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+            }, 1200); // delay before fading out
+    
+            // Start typing after loader
+            setTimeout(() => {
+                type();
+            }, 1300);
+        });
+    
+        // Typing Animation
+        const message = "Passionate about cybersecurity and building secure applications.";
+        let index = 0;
+        const typedTextSpan = document.getElementById("typed-text");
+    
+        function type() {
+            if (index < message.length) {
+                typedTextSpan.textContent += message.charAt(index);
+                index++;
+                setTimeout(type, 40); // typing speed
+            }
+        }
+    
+        // Dark mode toggle (your original logic)
         document.addEventListener("DOMContentLoaded", () => {
             const body = document.body;
             const icon = document.querySelector('.theme-toggle i');
@@ -371,10 +512,12 @@
                 }
             });
         });
+    
         function handleSubmit() {
             alert('Message sent successfully!');
             document.querySelector('form').reset();
         }
     </script>
+    
 </body>
 </html>
