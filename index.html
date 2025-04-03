@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiffney Chen - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .banner {
+            
+            background-color: rgba(238, 233, 211, 0.6); /* or pick a color like #222 or a gradient */
+            padding: 10px;
+            text-align: center;
+        }
+        .hero-split {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            }
+
+            .hero-text {
+            flex: 1;
+            min-width: 300px;
+            }
+
+            .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            }
+
+            .hero-pic {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #ccc;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            }
+
+
+
+        :root {
+            --bg-light: #ffffff;
+            --text-light: #1a1a1a;
+            --bg-dark: #1a1a1a;
+            --text-dark: #ffffff;
+            --accent-light: #f5f5f5;
+            --accent-dark: #2a2a2a;
+        }
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.dark-mode {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: var(--bg-light);
+            border-bottom: 1px solid #eee;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+        .dark-mode nav {
+            background: var(--bg-dark);
+            border-bottom-color: #333;
+        }
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .dark-mode .nav-links a {
+            color: var(--text-dark);
+        }
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-light);
+            font-size: 1.2rem;
+        }
+        .dark-mode .theme-toggle {
+            color: var(--text-dark);
+        }
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .hero {
+            padding-top: 8rem;
+            text-align: left;
+        }
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: var(--text-light);
+            color: var(--bg-light);
+        }
+        .dark-mode .btn-primary {
+            background: var(--text-dark);
+            color: var(--bg-dark);
+        }
+        .btn-secondary {
+            border: 1px solid var(--text-light);
+            color: var(--text-light);
+        }
+        .dark-mode .btn-secondary {
+            border-color: var(--text-dark);
+            color: var(--text-dark);
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .project-card {
+            background: var(--bg-light);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .dark-mode .project-card {
+            background: var(--accent-dark);
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .project-content {
+            padding: 1.5rem;
+        }
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .tag {
+            padding: 0.3rem 0.8rem;
+            border-radius: 999px;
+            background: var(--accent-light);
+            font-size: 0.9rem;
+        }
+        .dark-mode .tag {
+            background: var(--bg-dark);
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: var(--bg-light);
+            color: var(--text-light);
+        }
+        .dark-mode input,
+        .dark-mode textarea {
+            background: var(--accent-dark);
+            border-color: #444;
+            color: var(--text-dark);
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+            .buttons {
+                flex-direction: column;
+            }
+            section {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo">tiffney.</div>
+            <div class="nav-links">
+                <a href="#experience">experience</a>
+                <a href="#projects">projects</a>
+                <button class="theme-toggle"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
+    </nav>
+    <div class="banner">
+        <section class="hero">
+            <div class="hero-split">
+              <!-- Left side: Text -->
+              <div class="hero-text">
+                <p>hi there 👋, i'm</p>
+                <h1>Tiffney Chen</h1>
+                <p>18, She/Her</p>
+                <p>Passionate about cybersecurity and building secure applications.</p>
+                <div class="buttons">
+                  <!-- <a href="/resume.pdf" class="btn btn-primary">Resume</a> -->
+                  <a href="mailto:chentiffney@gmail.com" class="btn btn-secondary">Email</a>
+                  <a href="https://github.com/tiffneychen" target="_blank" class="btn btn-secondary">GitHub</a>
+                  <a href="https://www.linkedin.com/in/tiffney-chen/" target="_blank" class="btn btn-secondary">LinkedIn</a>
+                </div>
+              </div>
+          
+              <!-- Right side: Big profile image -->
+              <div class="hero-image">
+                <img src="images/tiffney.jpg" alt="Tiffney Chen" class="hero-pic">
+              </div>
+            </div>
+        </div>
+    </section>
+    <section id="about">
+        <h2>About me</h2>
+        <p>I am second-year computer science student at the University of Alberta. I'm deeply passionate about cybersecurity and its role in protecting digital assets. My journey involves exploring secure coding practices, understanding system vulnerabilities, and developing robust solutions that prioritize data protection.</p>
+        <p>Beyond tech, I’m also interested in esports, computers, and tennis — and fun fact: my favorite Pokémon is Wooper!</p>
+    </section>
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="experience-card">
+            <h3>Cybersecurity Course Projects</h3>
+            <p>Developed password encryption and decryption systems using hashing and cryptographic techniques, while leading team efforts in secure coding and vulnerability assessments.</p>
+            <div class="tech-tags">
+                <span class="tag">Python</span>
+                <span class="tag">Security</span>
+            </div>
+        </div>
+    </section>
+    <div class="banner">
+    <section id="projects">
+        <h2>Personal Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="images/project1.png" alt="Network Security Scanner">
+                <div class="project-content">
+                    <h3>Network Security Scanner</h3>
+                    <p>A Python-based tool for analyzing network vulnerabilities and generating security reports</p>
+                    <div class="tech-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Network Security</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="images/project2.png" alt="Terminal-based SIEM Login System">
+                <div class="project-content">
+                    <h3>Terminal-based SIEM Login System</h3>
+                    A terminal-based SIEM login system that securely handles user registration, login, and logs all access attempts with real-time monitoring for suspicious activity.
+                    <div class="tech-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Security</span>
+                        <span class="tag">SHA-256 Hashing</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="images/project3.png" alt="Phishing Detection Tool">
+                <div class="project-content">
+                    <h3>Phishing Detection Tool</h3>
+                    <p>Analyzes URLs for common phishing indicators like suspicious keywords, shortened links, and domain structure to help identify potentially malicious websites.</p>
+                    <div class="tech-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Cybersecurity</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="images/project4.png" alt="Password Strength Checker">
+                <div class="project-content">
+                    <h3>Password Strength Checker</h3>
+                    <p>A responsive password strength checker that gives real-time feedback based on the password's complexity and security criteria.</p>
+                    <div class="tech-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Cybersecurity</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="images/project5.png" alt="VALORANT Coaching Website">
+                <div class="project-content">
+                    <h3>Password Strength Checker</h3>
+                    <p>A responsive, single-page website designed to showcase coaching services, allow players to book sessions, and contact me directly for personalized VALORANT training.</p>
+                    <div class="tech-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">Form Handling</span>
+                        <span class="tag">CSS</span>
+                    </div>
+        </div>
+    </div>
+    </section>
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-form">
+            <form onsubmit="event.preventDefault(); handleSubmit();">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" rows="4" required></textarea>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+
+        <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 2rem; font-size: 1.8rem;">
+            <a href="mailto:chentiffney@gmail.com" target="_blank" aria-label="Email" style="color: black;">
+            <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://github.com/tiffneychen" target="_blank" aria-label="GitHub" style="color: black;">
+            <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/tiffney-chen/" target="_blank" aria-label="LinkedIn" style="color: black;">
+            <i class="fab fa-linkedin"></i>
+            </a>
+
+          </div>
+          
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const body = document.body;
+            const icon = document.querySelector('.theme-toggle i');
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                body.classList.add('dark-mode');
+                icon.classList.replace('fa-moon', 'fa-sun');
+            }
+            document.querySelector('.theme-toggle').addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                if (body.classList.contains('dark-mode')) {
+                    icon.classList.replace('fa-moon', 'fa-sun');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    icon.classList.replace('fa-sun', 'fa-moon');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        });
+        function handleSubmit() {
+            alert('Message sent successfully!');
+            document.querySelector('form').reset();
+        }
+    </script>
+</body>
+</html>
